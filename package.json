@@ -1,4 +1,8 @@
 {
   "name": "@lancejpollard/compile-link-deck-to-javascript.js",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "@lancejpollard/generate-javascript-from-link-deck.js": "*",
+    "webpack": "^5.66.0"
+  }
 }

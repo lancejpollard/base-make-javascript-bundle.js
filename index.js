@@ -1,22 +1,7 @@
 
 const fs = require('fs')
-const muse = require('./muse')
-const makeTree = require('@lancejpollard/link-parser.js')
-const mintDeckFile = require('./mint/file/deck')
-const mintCallFile = require('./mint/file/call')
-const mintTaskFile = require('./mint/file/task')
-const mintFormFile = require('./mint/file/form')
-const mintTestFile = require('./mint/file/test')
-const mintViewFile = require('./mint/file/view')
 const makeText = require('./text/javascript')
 const makeRoad = require('./text/javascript/make')
-
-const MINT = {
-  'dock-task-file': makeTaskFile,
-  'task-file': makeTaskFile,
-  'form-file': makeFormFile,
-  'view-file': makeViewFile,
-}
 
 module.exports = make
 
@@ -31,22 +16,6 @@ function make(base, ROAD_TO_MINT, dock, compile) {
   // if (compile) compile()
 }
 
-function load(file, deck, ROAD_TO_MINT) {
-  const roadList = makeRoad(file)
-  file.loadList = []
-  roadList.forEach(({ road }) => {
-    const [host, name, ...rest] = road.split('/')
-    if (!deck[road]) {
-      const mint = ROAD_TO_MINT[road]
-      if (!MINT[mint]) {
-        throw `${mint} - ${road}`
-      }
-      deck[road] = MINT[mint](road)
-      deck[road].mint = mint
-      load(deck[road], deck, ROAD_TO_MINT)
-    }
-  })
-}
 
 function save(name, text) {
   if (!fs.existsSync(`load/${name}`)) {
