@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "dependencies": {
     "@lancejpollard/generate-javascript-from-link-deck.js": "*",
+    "@lancejpollard/link-base.js": "*",
+    "@lancejpollard/load-link-deck.js": "*",
+    "mkdirp": "^0.5.5",
     "webpack": "^5.66.0"
   }
 }

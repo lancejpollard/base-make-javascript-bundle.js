@@ -1,7 +1,5 @@
 
-const generateJS = require('@lancejpollard/generate-javascript-from-link-deck.js')
 const webpack = require('webpack')
-const make = require('..')
 
 async function compileWebpack({
   entryPath,
@@ -17,7 +15,8 @@ async function compileWebpack({
       }
     }, (err, stats) => {
       if (err || stats.hasErrors()) {
-        console.log(err);
+        const json = stats.toJson()
+        console.log(err ?? json.errors[0].message);
         return rej(err)
       } else {
         return res()
